@@ -6,8 +6,9 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #ffeef8;
+    background-color: #dbc9e2; /* Soft lavender background */
     text-align: center;
+    color: #5d2f6e; /* Darker shade of lavender for text */
 }
 
 .container {
@@ -25,7 +26,7 @@ body {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #ff69b4;
+    color: #5d2f6e; /* Darker lavender for the question text */
 }
 
 .buttons {
@@ -41,24 +42,52 @@ button {
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 8px;
+    position: relative;
+    z-index: 10;
 }
 
+/* Yes button: Light peach with dark text for contrast */
 button#yesButton {
-    background-color: #ff69b4;
-    color: white;
+    background-color: #f9c2b0; /* Light peach */
+    color: #5d2f6e; /* Dark lavender for contrast */
+}
+
+/* No button: Light pink with dark lavender text */
+button#noButton {
+    background-color: #f7a7bb; /* Soft pink */
+    color: #5d2f6e; /* Dark lavender for contrast */
+}
+
+/* Smooth motion for the "No" button, but keep it within the screen */
+@keyframes runAway {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(150px); }
+    100% { transform: translateX(0); }
 }
 
 button#noButton {
-    background-color: #ffb6c1;
-    color: #ff69b4;
+    animation: none;
 }
 
-button:hover {
-    opacity: 0.8;
+/* Confetti animation */
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
 }
 
-/* Smooth motion for the "No" button */
-@keyframes runAway {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-300px); }
+.confetti {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: gold;
+    border-radius: 50%;
+    animation: confettiFall 2s ease-in-out forwards;
 }
