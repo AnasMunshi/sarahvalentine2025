@@ -34,4 +34,12 @@ noButton.addEventListener('click', () => {
 
     // Optionally add animation for smooth movement
     noButton.style.transition = 'all 0.5s ease-in-out';
+
+    // Shrink the No button when clicked
+    const currentSize = parseFloat(window.getComputedStyle(noButton).fontSize);
+    noButton.style.fontSize = `${currentSize - 2}px`; // Shrinking No button by 2px
+
+    // Grow the Yes button when No button is clicked
+    const yesButtonSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+    yesButton.style.fontSize = `${yesButtonSize + 2}px`; // Growing Yes button by 2px
 });
