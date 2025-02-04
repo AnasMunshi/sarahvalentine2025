@@ -37,3 +37,4 @@ function startConfetti() {
         }, 2000);
     }
 }
+
