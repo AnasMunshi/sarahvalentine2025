@@ -54,7 +54,7 @@
     <h1 id="valentine-text">Will you be my Valentine?</h1>
     <div class="buttons">
         <button id="yes" onclick="celebrate()">Yes</button>
-        <button id="no" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
+        <button id="no" onmouseover="moveNoButton()" onclick="changeToSure()">No</button>
     </div>
     <script>
         function moveNoButton() {
@@ -65,6 +65,12 @@
             let newX = Math.max(10, Math.min(centerX + (Math.random() * maxMove - maxMove / 2), window.innerWidth - button.offsetWidth - 10));
             let newY = Math.max(10, Math.min(centerY + (Math.random() * maxMove - maxMove / 2), window.innerHeight - button.offsetHeight - 10));
             button.style.transform = `translate(${newX - centerX}px, ${newY - centerY}px)`;
+        }
+
+        function changeToSure() {
+            // Change gif and text when "No" button is pressed
+            document.getElementById('valentine-gif').src = "https://media.tenor.com/pj-WvOM7W2oAAAAj/mocha-and.gif";
+            document.getElementById('valentine-text').innerHTML = "Are you sure...?";   
         }
 
         function celebrate() {
@@ -83,10 +89,11 @@
                 confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
                 document.body.appendChild(confetti);
                 
-                const fall = confetti.animate([
-                    { transform: `translateY(0px) rotate(0deg)`, opacity: 1 },
-                    { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-                ], {
+                const fall = confetti.animate([{
+                    transform: `translateY(0px) rotate(0deg)`, opacity: 1
+                }, {
+                    transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0
+                }], {
                     duration: Math.random() * 3000 + 2000,
                     easing: 'linear',
                     iterations: 1
