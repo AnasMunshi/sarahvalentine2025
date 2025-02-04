@@ -56,8 +56,15 @@ button#yesButton {
 button#noButton {
     background-color: #f7a7bb; /* Soft pink */
     color: #5d2f6e; /* Dark lavender for contrast */
+    border-radius: 8px;
+    position: absolute; /* Position absolute for random movement */
+    z-index: 10;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out; /* Smooth transition */
 }
-
 /* Smooth motion for the "No" button, but keep it within the screen */
 @keyframes runAway {
     0% { transform: translateX(0); }
