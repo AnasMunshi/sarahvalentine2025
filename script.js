@@ -20,18 +20,11 @@ yesButton.addEventListener('click', () => {
 
 // Event listener for the No button
 noButton.addEventListener('click', () => {
-    // Generate random positions for the No button to run to
-    const maxX = window.innerWidth - noButton.offsetWidth; // Maximum width to avoid overflow
-    const maxY = window.innerHeight - noButton.offsetHeight; // Maximum height to avoid overflow
+    // Move the No button away with animation
+    noButton.style.animation = 'runAway 0.5s forwards';
 
-    const randomX = Math.random() * maxX; // Random horizontal position
-    const randomY = Math.random() * maxY; // Random vertical position
-
-    // Move the No button to the random position
-    noButton.style.position = 'absolute';
-    noButton.style.left = `${randomX}px`;
-    noButton.style.top = `${randomY}px`;
-
-    // Optionally add animation for smooth movement
-    noButton.style.transition = 'all 0.5s ease-in-out';
+    // Disable the No button after it moves
+    setTimeout(() => {
+        noButton.disabled = true;
+    }, 500);
 });
