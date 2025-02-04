@@ -1,5 +1,6 @@
+/* Use Lobster font */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Lobster', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,10 +18,11 @@ body {
     width: 300px;
     height: 300px;
     margin-bottom: 20px;
+    transition: transform 0.3s ease;
 }
 
 .question {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     margin-bottom: 20px;
     color: #ff69b4;
@@ -53,4 +55,10 @@ button#noButton {
 
 button:hover {
     opacity: 0.8;
+}
+
+/* Smooth motion for the "No" button */
+@keyframes runAway {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-300px); }
 }
