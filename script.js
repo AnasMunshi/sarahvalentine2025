@@ -42,4 +42,4 @@ noButton.addEventListener('click', () => {
     // Grow the Yes button when No button is clicked
     const yesButtonSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
     yesButton.style.fontSize = `${yesButtonSize + 2}px`; // Growing Yes button by 2px
-}
+});
