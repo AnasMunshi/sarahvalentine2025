@@ -16,6 +16,7 @@
             overflow: hidden;
             flex-direction: column;
             color: #4a235a;
+            transition: background-color 1s ease-in-out;
         }
         h1 {
             font-size: 2.5rem;
@@ -57,9 +58,11 @@
         <button id="no" onmouseover="moveNoButton()" onclick="changeToSure()">No</button>
     </div>
     <script>
+        let noClickCount = 0;
+
         function moveNoButton() {
             const button = document.getElementById('no');
-            const maxMove = 180; // Slightly increased maximum movement range
+            const maxMove = 200;
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight / 2;
             let newX = Math.max(10, Math.min(centerX + (Math.random() * maxMove - maxMove / 2), window.innerWidth - button.offsetWidth - 10));
@@ -68,9 +71,19 @@
         }
 
         function changeToSure() {
-            // Change gif and text when "No" button is pressed
-            document.getElementById('valentine-gif').src = "https://media.tenor.com/pj-WvOM7W2oAAAAj/mocha-and.gif";
-            document.getElementById('valentine-text').innerHTML = "Are you sure...?";   
+            noClickCount++;
+            if (noClickCount === 1) {
+                document.getElementById('valentine-gif').src = "https://media.tenor.com/pj-WvOM7W2oAAAAj/mocha-and.gif";
+                document.getElementById('valentine-text').innerHTML = "Are you sure...?";   
+            } else if (noClickCount === 2) {
+                document.body.style.backgroundColor = "black";
+                document.getElementById('valentine-text').innerHTML = "Okay....";
+                document.getElementById('valentine-gif').src = "https://media.tenor.com/j1Bw_U6722UAAAAi/milk-and-mocha.gif";
+                document.querySelector('.buttons').style.display = 'none';
+                setTimeout(() => {
+                    window.location.href = "loveLetter.html";
+                }, 10000); // 10-second countdown before redirect
+            }
         }
 
         function celebrate() {
@@ -89,11 +102,10 @@
                 confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
                 document.body.appendChild(confetti);
                 
-                const fall = confetti.animate([{
-                    transform: `translateY(0px) rotate(0deg)`, opacity: 1
-                }, {
-                    transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0
-                }], {
+                const fall = confetti.animate([
+                    { transform: `translateY(0px) rotate(0deg)`, opacity: 1 },
+                    { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
                     duration: Math.random() * 3000 + 2000,
                     easing: 'linear',
                     iterations: 1
